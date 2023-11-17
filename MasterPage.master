@@ -1,0 +1,305 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8" />
+    <title>.:: ERP ::.</title>
+    <%--<meta http-equiv="refresh" content="50" />--%>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/vel.bmp" />
+    <link rel="icon" href="assets/vel.bmp" type="image/x-icon" />
+    <!-- Data table CSS -->
+    <link href="assets/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <!-- Toast CSS -->
+    <link href="assets/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" />
+    <!-- Morris Charts CSS -->
+    <link href="assets/morris.js/morris.css" rel="stylesheet" />
+    <!-- Chartist CSS -->
+    <link href="assets/chartist/dist/chartist.min.css" rel="stylesheet" />
+    <!-- vector map CSS -->
+    <link href="assets/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="assets/dist/css/style.css" rel="stylesheet" />
+    
+    <link href="assets/sweetalert/dist/sweetalert.css" rel="stylesheet" />
+
+    <link href="assets/dropify/dist/css/dropify.min.css" rel="stylesheet" />
+
+    <script src="assets/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type ="text/javascript">
+        window.onload = startInterval;
+        function startInterval() {
+            setInterval("startTime();", 1000);
+        }
+
+        function startTime() {
+            let current_datetime = new Date()
+            let formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds()
+            document.getElementById('search_form').innerHTML = formatted_date;
+        }
+
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body id="fullscreen">
+    <form id="form1" runat="server">
+        <div>
+            <!-- Preloader -->
+            <div class="preloader-it">
+                <div class="la-anim-1"></div>
+            </div>
+            <!-- /Preloader -->
+            <div class="wrapper theme-2-active navbar-top-light horizontal-nav">
+                <!-- Top Menu Items -->
+                <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="nav-wrap">
+                        <div class="mobile-only-brand pull-left">
+                            <div class="nav-header pull-left">
+                             <%--   <div class="logo-wrap">
+                                    <a href="javascript:void(0);">
+                                        <img class="brand-img" src="assets/img/logoblack.png" alt="brand" />
+                                        <span class="brand-text">
+                                            <img src="assets/img/logoblack.png" alt="brand" width="170" height="40" /></span>
+                                    </a>
+                                </div>--%>
+                            </div>
+                            <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="ti-align-left"></i></a>
+                            <%--<a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>--%>
+                            <a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="ti-more"></i></a>
+                            <div id="search_form" role="search" class="top-nav-search font-15 collapse pull-left" style="color: #f2f2f2;"></div>
+                            <%--<div id="search_form" role="search" class="top-nav-search collapse pull-left">
+                                <div class="input-group">
+                                    <input type="text" name="example-input1-group2" class="form-control" placeholder="Search"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn  btn-default" data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>--%>
+                        </div>
+                        <div id="mobile_only_nav" class="mobile-only-nav pull-right">
+                            <ul class="nav navbar-right top-nav pull-right">
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <asp:Label ID="lblDepartment" runat="server" data-toggle="tooltip" data-placement="bottom" title="Department" CssClass="txt-light2 font-15 bold" Text="department"></asp:Label></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <asp:Label ID="lblLoguser" runat="server" data-toggle="tooltip" data-placement="bottom" title="Username" CssClass="txt-light2 font-18 bold" Text="user"></asp:Label></a>
+                                    <%--<a href="javascript:void(0);">
+                                        <img src="assets/img/log.png" alt="user_auth" class="user-auth-img img-circle" /></a>--%>
+                                </li>
+
+                                <li>
+                                    <a href="login.aspx"><i class="icon-logout top-nav-icon txt-light2" data-toggle="tooltip" data-placement="bottom" title="Logout"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- /Top Menu Items -->
+
+                <!-- Left Sidebar Menu -->
+                <div class="fixed-sidebar-left">
+                    <ul class="nav navbar-nav side-nav nicescroll-bar theme-3-active">
+                        <li class="navigation-header">
+                            <span>Main</span>
+                            <hr />
+                        </li>
+                        <li runat="server" id="li_dashboard">
+                            <a class="active" href="Default.aspx" data-toggle="collapse" data-target="#dashboard_dr">
+                                <div class="pull-left"><i class="ti-image mr-20"></i><span class="right-nav-text">Dashboard </span></div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li runat="server" id="li_masters">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr">
+                                <div class="pull-left"><i class="ti-book  mr-20"></i><span class="right-nav-text">Masters</span></div>
+                                <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            <ul id="ecom_dr" class="collapse collapse-level-1 two-col-list">
+                                <li runat="server" id="li_security"><a href="SupplierList.aspx">Supplier / Customer</a></li>
+                                <li runat="server" id="li10"><a href="javascript:void(0);" data-toggle="collapse" data-target="#icom_dr">
+                                    <div class="pull-left"><span class="right-nav-text">Item Master</span></div>
+                                    <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            
+                                </li>
+                                <li runat="server" id="li_department"><a href="PortMaster.aspx">Port Master</a></li>
+                                <li runat="server" id="li59"><a href="javascript:void(0);" data-toggle="collapse" data-target="#iloc_dr">
+                                    <div class="pull-left"><span class="right-nav-text">Location Masters</span></div>
+                                    <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            
+                                </li>                                
+                                <li runat="server" id="li_vcategory"><a href="DepartmentMaster.aspx">Department Master</a></li>
+                                <li runat="server" id="li60"><a href="javascript:void(0);" data-toggle="collapse" data-target="#iTerm_dr">
+                                    <div class="pull-left"><span class="right-nav-text">Terms Masters</span></div>
+                                    <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            
+                                </li>
+                                
+                                <li runat="server" id="li_equipment"><a href="unitmaster.aspx">Unit Master</a></li>
+                                <li runat="server" id="li61"><a href="javascript:void(0);" data-toggle="collapse" data-target="#iStore_dr">
+                                    <div class="pull-left"><span class="right-nav-text">Store Masters</span></div>
+                                    <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            
+                                </li>                                
+                                <li runat="server" id="li7"><a href="HsnDetailsList.aspx">HSN Master</a></li>                                                              
+                                <li runat="server" id="li49"><a href="TaxMaster.aspx">Tax Master</a></li>
+                                <li runat="server" id="li50"><a href="TypeMaster.aspx">Type Master</a></li>
+                                <li runat="server" id="li51"><a href="CatergoryMaster.aspx">Category Master</a></li>
+                                <li runat="server" id="li62"><a href="RemarksMaster.aspx">QC Remarks Master</a></li>
+                            </ul>
+                        </li>
+                        <li runat="server" id="li_vschedule">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#pcomp_dr">
+                                <div class="pull-left"><i class=" ti-shopping-cart  mr-20"></i><span class="right-nav-text">Purchase</span></div>
+                                <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            
+                        </li>
+                        <li runat="server" id="li_vregistration">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#scom_dr">
+                                <div class="pull-left"><i class="ti-save  mr-20"></i><span class="right-nav-text">Stores</span></div>
+                                <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            
+                        </li>
+                        <li runat="server" id="li_checkin">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#mcom_dr">
+                                <div class="pull-left"><i class="ti-check-box mr-20"></i><span class="right-nav-text">Sales</span></div>
+                                <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            
+                        </li>
+                        <li runat="server" id="li_checkout">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#plan_drr">
+                                <div class="pull-left"><i class="ti-briefcase mr-20"></i><span class="right-nav-text">Planning</span></div>
+                                <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            
+                        </li>
+                        <li runat="server" id="li33">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Production_drr">
+                                <div class="pull-left"><i class="ti-wallet  mr-20"></i><span class="right-nav-text">Production</span></div>
+                                <div class="pull-right"><i class="ti-angle-down"></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            
+                        </li>
+                        <li runat="server" id="li34">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Inv_drr">
+                                <div class="pull-left"><i class="ti-truck  mr-20"></i><span class="right-nav-text">Logistics</span></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            
+                        </li>
+                        <li runat="server" id="li_reports">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr">
+                                <div class="pull-left"><i class="ti-printer mr-20"></i><span class="right-nav-text">Reports</span></div>
+                                <div class="pull-right"><i class="ti-angle-down "></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            
+                        </li>
+                         
+                    </ul>
+                </div>
+                <!-- /Left Sidebar Menu -->
+
+                <!-- Main Content -->
+                <div class="page-wrapper">
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                    <!-- Footer -->
+                    <footer class="footer pl-30 pr-30">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12 text-center ">
+                                    <p>ALL IS WELL.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- /Footer -->
+
+                </div>
+                <!-- /Main Content -->
+
+            </div>
+            <!-- /#wrapper -->
+        </div>
+    </form>
+
+    <!-- JavaScript -->
+    <!-- jQuery -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script src="assets/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="assets/dist/js/dataTables-data.js"></script>
+    <script src="assets/dist/js/modal-data.js"></script>
+    <script src="assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="assets/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="assets/jszip/dist/jszip.min.js"></script>
+    <script src="assets/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="assets/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <!-- Bootstrap Daterangepicker JavaScript -->
+    <script src="assets/dropify/dist/js/dropify.min.js"></script>
+    <!-- Slimscroll JavaScript -->
+    <script src="assets/dist/js/jquery.slimscroll.js"></script>
+    <!-- Progressbar Animation JavaScript -->
+    <script src="assets/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="assets/jquery.counterup/jquery.counterup.min.js"></script>
+    <!-- Fancy Dropdown JS -->
+    <script src="assets/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sparkline JavaScript -->
+    <script src="assets/jquery.sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- Owl JavaScript -->
+    <script src="assets/owl.carousel/dist/owl.carousel.min.js"></script>
+    <!-- Switchery JavaScript -->
+    <script src="assets/switchery/dist/switchery.min.js"></script>
+    <!-- Vector Maps JavaScript -->
+    <script src="assets/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="assets/vectormap/jquery-jvectormap-us-aea-en.js"></script>
+    <script src="assets/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="assets/dist/js/vectormap-data.js"></script>
+    <!-- Toast JavaScript -->
+    <script src="assets/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+    <!-- Piety JavaScript -->
+    <script src="assets/peity/jquery.peity.min.js"></script>
+    <script src="assets/dist/js/peity-data.js"></script>
+    <!-- Chartist JavaScript -->
+    <script src="assets/chart.js/Chart.min.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="assets/raphael/raphael.min.js"></script>
+    <script src="assets/morris.js/morris.min.js"></script>
+    <!-- ChartJS JavaScript -->
+    <script src="assets/chart.js/Chart.min.js"></script>
+
+    <script src="assets/dist/js/form-file-upload-data.js"></script>
+
+    <!-- Init JavaScript -->
+    <script src="assets/dist/js/init.js"></script>
+</body>
+</html>
